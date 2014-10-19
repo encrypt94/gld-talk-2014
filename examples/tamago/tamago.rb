@@ -1,7 +1,7 @@
 require 'arduino_firmata'
 
 @arduino = ArduinoFirmata.connect(nil, nonblock_io: true, eventmachine: false)
-@arduino.pin_mode(13, ArduinoFirmata::OUTPUT)
+@arduino.pin_mode(2, ArduinoFirmata::OUTPUT)
 
 def tap(pin)
   @arduino.digital_write(pin, ArduinoFirmata::HIGH)
@@ -11,5 +11,5 @@ def tap(pin)
 end
 
 99999.times do
-  tap 13
+  tap 2
 end
