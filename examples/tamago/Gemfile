@@ -1,0 +1,1 @@
+gem 'arduino_firmata', '~> 0.3.7'
