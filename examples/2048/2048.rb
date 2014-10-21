@@ -68,11 +68,6 @@ last_value = 0
 
 screen = device.screenshot
 
-def xy_to_i(x,y,screen)
-  index_inc = screen.bpp >> 3
-  return (x*index_inc)+(y*(index_inc*(screen.width)))
-end
-
 lols = [-20,0,20]
 a = 0
 1.times do 
@@ -83,8 +78,7 @@ a = 0
     cl = 0
     v = nil
     3.times do |i|
-      index = xy_to_i(point[:x]+lols[i],point[:y]+i,screen)
-      cl = screen.getARGB(index)
+      cl = screen.pixel(point[:x]+lols[i],point[:y]+i)
       puts cl
       vl = color_to_value(cl)
       if(vl)
