@@ -2,11 +2,12 @@ require 'arduino_firmata'
 
 @arduino = ArduinoFirmata.connect(nil, nonblock_io: true, eventmachine: false)
 @arduino.pin_mode(2, ArduinoFirmata::OUTPUT)
+@arduino.digital_write(2, ArduinoFirmata::HIGH)
 
 def tap(pin)
-  @arduino.digital_write(pin, ArduinoFirmata::HIGH)
-  sleep 0.025
   @arduino.digital_write(pin, ArduinoFirmata::LOW)
+  sleep 0.025
+  @arduino.digital_write(pin, ArduinoFirmata::HIGH)
   sleep 0.025
 end
 
