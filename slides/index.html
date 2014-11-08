@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Playing games on your phone: without hands</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="bower_components/shower-ribbon/styles/screen.css">
+</head>
+<style>
+.example h3 {
+  position: absolute;
+  top: 70%;
+  text-align: center;
+  left: 0px;
+  width: 100%;
+  font-size:50px;
+}
+</style>
+<body class="list">
+	<header class="caption">
+		<h1>Playing games on your phone: without hands</h1>
+		<p>encrypt</p>
+	</header>
+	<section class="slide cover" id="Cover"><div>
+	        <div style="margin-top: 250px">
+		<h2>Playing games on your phone</h2>
+		<h3>without hands</h3>
+		<p>By <a href="http://encrypt.cat">encrypt</a></p>
+		<img src="pictures/cover.jpg" alt="">
+		</div>
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#Cover h3 {
+				margin: 3px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:50px;
+				}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#Cover p a {
+					color:#FFF;
+					}
+		</style>
+	</div></section>
+	<section class="slide shout"><div>
+		<h2>What?</h2>
+	</div></section>
+	<section class="slide shout"><div>
+		<h2>Why?!</h2>
+	</div></section>
+	<section class="slide shout example"><div>
+		<h2>LEARN BY EXAMPLES</h2>
+	</div></section>
+	<section class="slide shout example"><div>
+		<h2>TAMAGO</h2>
+	</div></section>
+	<section class="slide cover h" ><div>
+		<img src="./pictures/tamago.png"></img>
+	</div></section>
+	<section class="slide"><div>
+		<h2>What we will see:</h2>
+		<ol>
+          	     <li>How to Tap (Theory)</li>
+          	     <li>How to Tap (Pratice)</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Capacitive touchscreen</h2>
+		<p>
+		  Capacitive sensing is a technology, based on capacitive coupling, that takes human body capacitance as input. Capacitive sensors detect anything that is conductive or has a dielectric different from that of air.
+		</p>
+	</div></section>
+	<section class="slide cover" ><div>
+	  <div style="background-color: white">
+	    <img src="./pictures/touchscreen.png"></img>
+	  </div>
+	</div></section>
+	<section class="slide cover" ><div>
+	    <img src="./pictures/schema1.png"></img>
+	</div></section>
+	<section class="slide"><div>
+	    <pre style="font-size: 15px">
+	      <code>void tap(int pin)</code>
+	      <code>{</code>
+	      <code>   // Turn relay on</code>
+	      <code>   digitalWrite(pin, HIGH);</code>
+	      <code>   // Wait</code>
+	      <code>   delay(25);</code>
+	      <code>   // Turn relay off</code>
+	      <code>   digitalWrite(pin, LOW);</code>
+	      <code>}</code>
+	      <code>void setup()</code>
+	      <code>{</code>
+	      <code>   // Configure the pin as output</code>
+	      <code>   pinMode(2, OUTPUT);</code>
+	      <code>   // Tap once</code>
+	      <code>   tap(2);</code>
+	      <code>}</code>
+	    </pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Shopping list:</h2>
+		<ol>
+          	     <li>Firmata compatible board (Arduino)</li>
+          	     <li>Ruby</li>
+          	     <li>NPN Transistor</li>
+          	     <li>Relays</li>
+          	     <li>Resistor</li>
+          	     <li>Wires</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Firmata</h2>
+		<p>
+		  Firmata is a generic protocol for communicating with microcontrollers from software on a host computer.<br/>
+		  <a href="https://github.com/firmata/arduino">https://github.com/firmata/arduino</a><br/>
+		  <code>gem install arduino_firmata</code>
+		</p>
+	</div></section>
+	<section class="slide"><div>
+	    <pre style="font-size: 16px">
+	      <code>require 'arduino_firmata'</code>
+	      <code>@arduino = ArduinoFirmata.connect(nil, nonblock_io: true, eventmachine: false)</code>
+	      <code>@arduino.pin_mode(2, ArduinoFirmata::OUTPUT)</code>
+	      <code>def tap(pin)</code>
+	      <code>  @arduino.digital_write(pin, ArduinoFirmata::HIGH)</code>
+	      <code>  sleep 0.025</code>
+	      <code>  @arduino.digital_write(pin, ArduinoFirmata::LOW)</code>
+	      <code>  sleep 0.025</code>
+	      <code>end</code>
+
+	      <code>99999.times do</code>
+	      <code>  tap 2</code>
+	      <code>end</code>
+	    </pre>
+	</div></section>
+	<section class="slide shout"><div>
+	    <h2><a href="http://youtu.be/DTrusTZVrrc" target="_blank">Demo Video</a></h2>
+	</div></section>
+	<section class="slide shout example"><div>
+		<h2>2048</h2>
+	</div></section>
+	<section class="slide cover h" ><div>
+		<img src="./pictures/2048.png"></img>
+	</div></section>
+	<section class="slide"><div>
+		<h2>What we will see:</h2>
+		<ol>
+          	     <li>How to swipe</li>
+          	     <li>How to see Colors</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Shopping list:</h2>
+		<ol>
+          	     <li>Arduino</li>
+          	     <li>Firmata</li>
+		     <li>ADB</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>ADB</h2>
+	    <p>
+	      <b>Android Debug Bridge</b><br/>
+	      <a href="https://github.com/yoyo0906/ruby-adb-sdklib">https://github.com/yoyo0906/ruby-adb-sdklib</a><br/>
+	      <code>gem install adb-sdklib</code>
+	    </p>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>ADB - Device init</h2>
+	    <pre>
+	      <code>require 'adb-sdklib'</code>
+	    
+	      <code>adb = AdbSdkLib::Adb.new</code>
+	      <code>@device = adb.devices.first</code>
+	    </pre>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>ADB - Get Screen and pixel</h2>
+	    <pre>
+	      <code>screen = @device.screenshot</code>
+	    
+	      <code>pixel = screen.pixel(x,y)</code>
+	    </pre>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>Let's SWIPE</h2>
+	    <pre style="font-size: 13pt">
+	      <code>def swipe(dir)</code>
+	      <code>  pins = { left: [3, 2],</code>
+	      <code>    right: [2, 3],</code>
+	      <code>    up: [5, 4],</code>
+	      <code>    down: [4, 5] }</code>
+	      <code>  @arduino.digital_write(pins[dir][0], ArduinoFirmata::LOW)</code>
+	      <code>  sleep 0.50</code>
+	      <code>  @arduino.digital_write(pins[dir][1], ArduinoFirmata::LOW)</code>
+	      <code>  sleep 0.10</code>
+	      <code>  @arduino.digital_write(pins[dir][0], ArduinoFirmata::HIGH)</code>
+	      <code>  sleep 0.25</code>
+	      <code>  @arduino.digital_write(pins[dir][1], ArduinoFirmata::HIGH)</code>
+	      <code>end</code>
+	    </pre>
+	</div></section>
+	<section class="slide shout"><div>
+	    <h2><a href="http://youtu.be/AY3Z4gEulkg" target="_blank">Demo Video</a></h2>
+	</div></section>
+	<section class="slide shout example"><div>
+		<h2>QuizDuello</h2>
+	</div></section>
+	<section class="slide cover h" ><div>
+		<img src="./pictures/quizduello.png"></img>
+	</div></section>
+	<section class="slide"><div>
+		<h2>What we will see:</h2>
+		<ol>
+          	     <li>How to read</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Shopping list:</h2>
+		<ol>
+          	     <li>Arduino</li>
+          	     <li>Firmata</li>
+		     <li>ADB</li>
+		     <li>Tesseract OCR</li>
+		     <li>Similar Text</li>
+		     <li>Chunky PNG</li>
+		     <li>Sqlite3</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>But First</h2>
+	    <p>
+	      We need to get and decode the Q/A database, take a look to:<br>
+	      <a>https://github.com/encrypt94/quizkampen-db-decoder</a>
+	    </p>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>Tesseract</h2>
+	    <p>
+	      Tesseract is an optical character recognition (OCR) engine, it's free software (Apache Licence 2) and is considered one of the most accurate open source OCR engines currently available.<br>
+	      Available also for ruby:<br/>
+	      <code>gem install tesseract-ocr</code>
+	    </p>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>Init Tesseract engine</h2>
+	    <pre style="font-size: 12pt">
+	      <code>require 'tesseract'</code>
+              <code>tesseract = Tesseract::Engine.new('/usr/share/tessdata/', :ita) { |e|</code>
+	      <code>    e.blacklist = '|'</code>
+	      <code>}</code>
+	    </pre>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>Read question and get answer</h2>
+	    <pre style="font-size: 11pt">
+	      <code>require 'chunky_png'</code>
+	      <code>require 'similar_text'</code>
+	      <code>question = ChunkyPNG::Image.new(450, 200, ChunkyPNG::Color::TRANSPARENT)</code>
+	      <code>450.times do |x|</code>
+	      <code>  200.times do |y|</code>
+	      <code>    c = screen.pixel(x+60,y+185)</code>
+	      <code>    question[x,y] = ChunkyPNG::Color.rgba(c.red, c.green, c.blue, c.alpha)</code>
+	      <code>  end</code>
+	      <code>end</code>
+	      <code>question = tesseract.text_for(question).strip</code>
+	      <code>questions.each do |q|</code>
+	      <code>  if question.similar(q[:question]) >= 85</code>
+	      <code>    answers.push q[:answer]</code>
+	      <code>  end</code>
+	      <code>end</code>
+	    </pre>
+	</div></section>
+	<section class="slide shout"><div>
+	    <h2><a href="http://youtu.be/D0nOaUQQ6X4" target="_blank">Demo Video</a></h2>
+	</div></section>
+	<section class="slide shout example"><div>
+		<h2>Piano Tails</h2>
+	</div></section>
+	<section class="slide cover h" ><div>
+		<img src="./pictures/pianotails.png"></img>
+	</div></section>
+	<section class="slide"><div>
+		<h2>What we will see:</h2>
+		<ol>
+		     <li>How to see colors: the analog way</li>
+		     <li>How to tap: the reliable way</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Shopping list:</h2>
+		<ol>
+          	     <li>LDR</li>
+          	     <li>Resistor</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>How to tap</h2>
+	    <script src="https://gist.github.com/encrypt94/461b2818d15ceb5c2420.js"></script>
+	</div></section>
+	<section class="slide cover" ><div>
+	    <img src="./pictures/schema2.png"></img>
+	</div></section>
+	<section class="slide"><div>
+	    <h2>Read color</h2>
+	    <pre style="font-size: 11pt">
+	      <code>tails = [{x: 60 , y: 600 },</code>
+	      <code>         {x: 200 , y: 600 },</code>
+	      <code>         {x: 350 , y: 600 },</code>
+	      <code>         {x: 480 , y: 600 }]</code>
+	      <code>50.times do</code>
+	      <code>  4.times do |tail|</code>
+	      <code>    value = @arduino.analog_read(tail)</code>
+	      <code>    sleep 0.005</code>
+	      <code>    if(value < 250)</code>
+	      <code>      puts tail</code>
+	      <code>      tap(tails[tail][:x], tails[tail][:y], screen.width, screen.height)</code>
+	      <code>    end</code>
+	      <code>  end</code>
+	      <code>  sleep 0.2</code>
+	      <code>end</code>
+	    </pre>
+	</div></section>
+	<section class="slide shout"><div>
+	    <h2><a href="http://youtu.be/4gkCJT7NRjA" target="_blank">Demo Video</a></h2>
+	</div></section>
+	<section class="slide shout" ><div>
+	    <h2>???????</h2>
+	</div></section>
+	<section class="slide cover h" ><div>
+		<img src="./pictures/thankyou.gif"></img>
+	</div></section>
+	<script src="bower_components/shower-core/shower.min.js"></script>
+</body>
+</html>
